@@ -9,12 +9,12 @@ import jakarta.persistence.*;
 @Table(name = "facturas")
 public class Factura 
 {
-	
     @Id
     @GeneratedValue
     @Column(name = "codigo")
     private int codigo;
     
+    @Column(name = "numero")
     private String numero;
 
     @Column(name = "fechaEmision")

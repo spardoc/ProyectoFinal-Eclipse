@@ -14,6 +14,12 @@ public class Cliente {
     
     @Column(name = "nombre")
     private String nombre;
+    
+    @Column(name = "correo")
+    private String correo;
+    
+    @Column(name = "clave")
+    private String clave;
 
     @Column(name = "direccion")
     private String direccion;
@@ -48,6 +54,22 @@ public class Cliente {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
 	@Override

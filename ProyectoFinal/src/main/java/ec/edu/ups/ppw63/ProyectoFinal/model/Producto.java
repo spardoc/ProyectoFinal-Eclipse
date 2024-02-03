@@ -26,6 +26,9 @@ public class Producto
     
     @Column(name = "precio")
     private double precio;
+    
+    @Column(name = "imagen")
+    private String imagen;
 
 	public int getCodigo() {
 		return codigo;
@@ -66,11 +69,18 @@ public class Producto
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
 	@Override
 	public String toString() {
 		return "Producto [codigo=" + codigo + ", nombre=" + nombre + ", categoria=" + categoria + ", stock=" + stock
 				+ ", precio=" + precio + "]";
 	}
-	
 }

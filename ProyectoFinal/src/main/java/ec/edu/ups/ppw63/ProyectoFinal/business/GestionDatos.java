@@ -35,7 +35,6 @@ public class GestionDatos
 	@PostConstruct //Posterior a la creacion se llama a este metodo
 	public void init() 
 	{
- 
         try (Connection connection = dataSource.getConnection()) {
             // Imprimir un mensaje si la conexión es exitosa
             System.out.println("Conexión exitosa a la base de datos.");
@@ -45,8 +44,7 @@ public class GestionDatos
             e.printStackTrace();
         }
 		
-		
-		System.out.println("Iniciando");
+		System.out.println("Iniciando...");
 		
 		Cliente cliente = new Cliente();
 		cliente.setCodigo(1);
@@ -90,15 +88,14 @@ public class GestionDatos
 		prod.setPrecio(20.50);
 		prod.setStock(50);
 		
-		det.addProducto(prod);
-		
 		prod = new Producto();
 		prod.setNombre("Floreada");
 		prod.setCategoria("Mujer");
 		prod.setPrecio(15.60);
 		prod.setStock(20);
 		
-		det.addProducto(prod);
+		
+		
 		
 		daoFactura.insert(factura);
 		
