@@ -1,3 +1,4 @@
+
 package ec.edu.ups.ppw63.ProyectoFinal.model;
 import java.util.ArrayList;
 import java.util.Date;
@@ -69,13 +70,6 @@ public class Factura
 
 	public void setNumero(String numero) {
 		this.numero = numero;
-	}
-	
-	public void addDetalle(DetalleFactura detalle) 
-	{
-		if(detalles == null)
-			detalles = new ArrayList<DetalleFactura>();
-		detalles.add(detalle);
 	}
 
 	@Override

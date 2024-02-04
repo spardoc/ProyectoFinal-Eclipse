@@ -20,7 +20,6 @@ import jakarta.ws.rs.core.Response;
 @Path("clientes")
 public class ClienteServices 
 {
-	
 	@Inject
 	private GestionClientes gClientes;
 	

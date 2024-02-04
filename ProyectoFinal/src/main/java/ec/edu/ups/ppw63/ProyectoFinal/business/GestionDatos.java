@@ -8,7 +8,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import ec.edu.ups.ppw63.ProyectoFinal.dao.ClienteDAO;
+import ec.edu.ups.ppw63.ProyectoFinal.dao.DetalleFacturaDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.dao.FacturaDAO;
+import ec.edu.ups.ppw63.ProyectoFinal.dao.ProductoDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Cliente;
 import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleFactura;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Factura;
@@ -28,6 +30,12 @@ public class GestionDatos
 	
 	@Inject
 	private FacturaDAO daoFactura;
+	
+	@Inject
+	private ProductoDAO daoProducto;
+	
+	@Inject
+	private DetalleFacturaDAO daoDetalleFactura;
 	
 	@Resource(lookup = "java:/ProyectoFinalDS")
     private DataSource dataSource;
@@ -50,6 +58,8 @@ public class GestionDatos
 		cliente.setCodigo(1);
 		cliente.setDni("1105919169");
 		cliente.setNombre("Samuel Pardo");
+		cliente.setCorreo("samuelpardo1997@gmail.com");
+		cliente.setClave("1234");
 		cliente.setDireccion("Loja");
 		
 		daoCliente.insert(cliente);
@@ -58,57 +68,85 @@ public class GestionDatos
 		cliente.setCodigo(2);
 		cliente.setDni("1105919388");
 		cliente.setNombre("Cristian Timbi");
+		cliente.setCorreo("ctimbi@ups.edu.ec");
+		cliente.setClave("1234");
 		cliente.setDireccion("Cuenca");
 		
 		daoCliente.insert(cliente);
 		
-		Factura factura = new Factura();
-		factura.setCliente(cliente);
-		factura.setNumero("11111-111-1111");
-		factura.setFechaEmision(new Date());
-		factura.setTotal(1000.52);
-		
-		DetalleFactura det = new DetalleFactura();
-		det.setNombre("Chaquetas");
-		det.setCantidad(2);
-		det.setPrecio(100.50);
-		
-		factura.addDetalle(det);
-		
-		det = new DetalleFactura();
-		det.setNombre("Hoodies");
-		det.setCantidad(1);
-		det.setPrecio(150.50);
-		
-		factura.addDetalle(det);
-		
 		Producto prod = new Producto();
-		prod.setNombre("Americana");
+		prod.setNombre("Camiseta de rayas");
 		prod.setCategoria("Hombre");
 		prod.setPrecio(20.50);
+		prod.setImagen("https://www.etafashion.com/medias/5000000916476-900x1200-0.jpg?context=bWFzdGVyfGltYWdlc3w0MTk3MDN8aW1hZ2UvanBlZ3xhR0U1TDJnd05DOHlPRFk1T0RVek5EWTBNVFk1TkM4MU1EQXdNREF3T1RFMk5EYzJMVGt3TUhneE1qQXdYekF1YW5CbnwzYTJkMDgxZTNiZDQ1Nzk1ODU3MDI3OWVkZGIwYThiYTYwMjgzZDFkMWM4ODQyZDk5MGFkNGM0OGY5Mjk5MWVl");
 		prod.setStock(50);
 		
+		daoProducto.insert(prod);
+		
 		prod = new Producto();
-		prod.setNombre("Floreada");
-		prod.setCategoria("Mujer");
+		prod.setNombre("Camiseta con estampado PIXAR");
+		prod.setCategoria("Hombre");
 		prod.setPrecio(15.60);
+		prod.setImagen("https://images.deprati.com.ec/sys-master/images/hd7/h2d/11717335842846/16937855-0_product_1200Wx1800H");
 		prod.setStock(20);
 		
+		daoProducto.insert(prod);
+
+		prod = new Producto();
+		prod.setNombre("Camiseta con estampado Asiatico");
+		prod.setCategoria("Hombre");
+		prod.setPrecio(15.60);
+		prod.setImagen("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcKbp6h1PwB1clTEfdaD6cjH61EY0aPVpmW907fkePyA&s");
+		prod.setStock(20);
 		
+		daoProducto.insert(prod);
 		
+		prod = new Producto();
+		prod.setNombre("Camiseta Rosada");
+		prod.setCategoria("Mujer");
+		prod.setPrecio(15.60);
+		prod.setImagen("https://lucattistore.com/wp-content/uploads/2021/08/Camiseta-con-estampado-de-bolsillo-Montanita-mujer.jpg");
+		prod.setStock(20);
 		
-		daoFactura.insert(factura);
+		daoProducto.insert(prod);
 		
-		/*System.out.println("\n------------- Clientes");
+		prod = new Producto();
+		prod.setNombre("Camiseta con estampado de mujer");
+		prod.setCategoria("Mujer");
+		prod.setPrecio(15.60);
+		prod.setImagen("https://i.pinimg.com/736x/ce/4c/e9/ce4ce9824af0b548d703b31bdbdc75b4.jpg");
+		prod.setStock(20);
+		
+		daoProducto.insert(prod);
+		
+		prod = new Producto();
+		prod.setNombre("Camiseta con estampado de Stich");
+		prod.setCategoria("Mujer");
+		prod.setPrecio(15.60);
+		prod.setImagen("https://i.ebayimg.com/images/g/seEAAOSwPHdkB5xS/s-l1200.webp");
+		prod.setStock(20);
+		
+		daoProducto.insert(prod);
+		
+		System.out.println("\n------------- Clientes");
 		List<Cliente> list = daoCliente.getAll();
 		for (Cliente cli: list) {
-			System.out.println(cli.getCodigo() + "\t" + cli.getNombre());
-		}*/
-		System.out.println("\n------------- Facturas2");
-		List<Factura> list2 = daoFactura.getAll();
-		for (Factura fac: list2) {
-			System.out.println(fac);
+			System.out.println(cli);
 		}
+		
+		System.out.println("\n------------- Productos");
+		List<Producto> list2 = daoProducto.getAll();
+		for (Producto producto: list2) {
+			System.out.println(producto);
+		}
+		
+//		System.out.println("\n------------- Facturas2");
+//		List<Factura> list2 = daoFactura.getAll();
+//		for (Factura fac: list2) {
+//			System.out.println(fac);
+//		}
 	
+		
+		
 	}
 }

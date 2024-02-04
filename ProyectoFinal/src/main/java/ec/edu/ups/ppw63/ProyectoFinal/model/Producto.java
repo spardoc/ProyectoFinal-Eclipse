@@ -1,3 +1,4 @@
+
 package ec.edu.ups.ppw63.ProyectoFinal.model;
 
 import jakarta.persistence.Column;
@@ -27,7 +28,7 @@ public class Producto
     @Column(name = "precio")
     private double precio;
     
-    @Column(name = "imagen")
+    @Column(name = "imagen", length = 2000) // Aumenta la longitud de la columna 'imagen' según tus necesidades
     private String imagen;
 
 	public int getCodigo() {

@@ -1,3 +1,4 @@
+
 package ec.edu.ups.ppw63.ProyectoFinal.dao;
 
 import java.util.List;
@@ -36,11 +37,11 @@ public class ProductoDAO {
         return q.getResultList();
     }
     
-    public Producto getProductoPorNombre(String nombre) 
+    public Producto getProductoPorCodigo(int codigo) 
 	{
-		String jpql = "SELECT p FROM Producto p WHERE p.nombre = :nombre"; //Sentencias a las entidades
+		String jpql = "SELECT p FROM Producto p WHERE p.codigo = :codigo"; //Sentencias a las entidades
 		Query q = em.createQuery(jpql, Producto.class);
-		q.setParameter("nombre", nombre);
+		q.setParameter("codigo", codigo);
 		List<Producto> productos = q.getResultList();
 		if(productos.size() > 0) 
 		{
