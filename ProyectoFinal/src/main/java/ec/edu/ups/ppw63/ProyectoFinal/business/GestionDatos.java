@@ -69,7 +69,7 @@ public class GestionDatos
 		cliente.setDni("1105919388");
 		cliente.setNombre("Cristian Timbi");
 		cliente.setCorreo("ctimbi@ups.edu.ec");
-		cliente.setClave("1234");
+		cliente.setClave("5678");
 		cliente.setDireccion("Cuenca");
 		
 		daoCliente.insert(cliente);

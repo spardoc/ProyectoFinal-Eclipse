@@ -40,8 +40,38 @@ public class ClienteServices
 					.entity(error)
 					.build();
 		}
-		
 	}
+	
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("login")
+	public Response verificarCliente(@QueryParam("correo") String correo, @QueryParam("clave") String clave) 
+	{
+		try {
+			boolean esValido = gClientes.verificarCorreo(correo);
+			if (esValido) 
+			{
+	            esValido = gClientes.verificarClave(clave);
+	            if (esValido) {
+	                // Envía un objeto JSON con el mensaje de acceso concedido
+	                return Response.ok("{\"mensaje\":\"Acceso concedido\"}").build();
+	            } else {
+	                // Credenciales inválidas
+	                ErrorMessage em = new ErrorMessage(4, "Correo o contraseña incorrecta");
+	                return Response.status(Response.Status.UNAUTHORIZED).entity(em).build();
+	            }
+			} else {
+	            // Credenciales inválidas
+	            ErrorMessage em = new ErrorMessage(4, "Correo o contraseña incorrecta");
+	            return Response.status(Response.Status.UNAUTHORIZED).entity(em).build();
+            }
+		} catch (Exception e) {
+			ErrorMessage em = new ErrorMessage(4, "Correo o contraseña incorrecta");
+            return Response.status(Response.Status.UNAUTHORIZED).entity(em).build();
+		}
+	}
+		 
 	
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)

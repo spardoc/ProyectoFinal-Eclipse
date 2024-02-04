@@ -98,7 +98,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+			<dependency>
+			    <groupId>org.mindrot</groupId>
+			    <artifactId>jbcrypt</artifactId>
+			    <version>0.4</version>
+			</dependency>
             <!--Define the JUnit5 bom. WildFly BOM still contains JUnit4, so we have to declare a version here -->
             <dependency>
                 <groupId>org.junit</groupId>
