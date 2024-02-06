@@ -77,7 +77,4 @@ public class Factura
 		return "Factura [codigo=" + codigo + ", numero=" + numero + ", fechaEmision=" + fechaEmision + ", total="
 				+ total + ", cliente=" + cliente + ", detalles=" + detalles + "]";
 	}
-
-	
-	
 }

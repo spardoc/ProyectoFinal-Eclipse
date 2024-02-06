@@ -83,5 +83,4 @@ public class DetalleFactura {
 		return "DetalleFactura [codigo=" + codigo + ", cantidad=" + cantidad + ", precio="
 				+ precio + ", iva=" + iva + ", factura=" + factura + ", productos=" + productos + "]";
 	}
-	
 }
