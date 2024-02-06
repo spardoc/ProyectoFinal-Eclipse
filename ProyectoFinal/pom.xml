@@ -111,6 +111,20 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- Añadir la dependencia de JSON-B API si no está presente -->
+			<dependency>
+			    <groupId>jakarta.json.bind</groupId>
+			    <artifactId>jakarta.json.bind-api</artifactId>
+			    <version>2.0.0</version> <!-- Usa la versión que sea compatible con tu servidor -->
+			</dependency>
+			
+			<!-- Implementación de referencia para JSON-B (Opcional si el servidor ya la incluye) -->
+			<dependency>
+			    <groupId>org.eclipse</groupId>
+			    <artifactId>yasson</artifactId>
+			    <version>2.0.2</version> <!-- Usa la versión que sea compatible con tu servidor -->
+			</dependency>
+
         </dependencies>
     </dependencyManagement>
 

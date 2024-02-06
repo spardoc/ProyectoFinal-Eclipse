@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "clientes")
 public class Cliente {
+	
     @Id
+    @GeneratedValue
     @Column(name = "codigo")
     private int codigo;
     
@@ -24,6 +26,14 @@ public class Cliente {
 
     @Column(name = "direccion")
     private String direccion;
+
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private Carrito carrito;
+    
+    public Cliente() {
+        this.carrito = new Carrito();
+        this.carrito.setCliente(this);
+    }
 
     public String getDni() {
 		return dni;

@@ -25,7 +25,7 @@ public class Factura
     private Double total;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "codigo")
+    @JoinColumn(name = "codigo_cliente")
     private Cliente cliente;
 
     @OneToMany(cascade = CascadeType.ALL)

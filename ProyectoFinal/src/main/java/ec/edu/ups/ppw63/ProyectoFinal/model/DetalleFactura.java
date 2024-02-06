@@ -1,6 +1,5 @@
 
 package ec.edu.ups.ppw63.ProyectoFinal.model;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -9,12 +8,18 @@ import jakarta.persistence.*;
 @Table(name = "detalles_factura")
 public class DetalleFactura {
 	
-	@GeneratedValue
     @Id
+    @GeneratedValue
+    @Column(name = "codigo")
 	private int codigo;
-	private String nombre; 
+	
+    @Column(name = "cantidad")
 	private int cantidad;
+	
+    @Column(name = "precio")
 	private double precio;
+	
+    @Column(name = "iva")
 	private int iva;
 	
 	@ManyToOne
@@ -31,14 +36,6 @@ public class DetalleFactura {
 
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public int getCantidad() {
@@ -83,7 +80,7 @@ public class DetalleFactura {
 
 	@Override
 	public String toString() {
-		return "DetalleFactura [codigo=" + codigo + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio="
+		return "DetalleFactura [codigo=" + codigo + ", cantidad=" + cantidad + ", precio="
 				+ precio + ", iva=" + iva + ", factura=" + factura + ", productos=" + productos + "]";
 	}
 	

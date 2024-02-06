@@ -24,22 +24,19 @@ public class GestionClientes
 		}
 		else 
 		{
-			cliente.setClave(hashPassword(cliente.getClave()));
 			daoCliente.insert(cliente);
 		}
 	}
 	
-	public boolean verificarCorreo(String correo) throws Exception {
-	    boolean validado = daoCliente.verificarCorreo(correo);
-	    if (validado) {
-	        return true;
-	    }
-	    else 
-	    {
-	    	throw new Exception("Correo incorrecto");
-	    }
-	    
-	}
+	public Cliente verificarCredenciales(String correo, String clave) throws Exception {
+        Cliente cliente = daoCliente.getClientePorCorreo(correo);
+
+        if (cliente != null && cliente.getClave().equals(clave)) {
+            return cliente;
+        } else {
+            throw new Exception("Correo o contraseña incorrecta");
+        }
+    }
 	
 	public boolean verificarClave(String clave) throws Exception {
 		boolean validado = daoCliente.verificarClave(clave);
@@ -51,26 +48,6 @@ public class GestionClientes
 	    	throw new Exception("Correo incorrecto");
 	    }
     }
-
-	private String hashPassword(String password) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(password.getBytes());
-            StringBuilder hexString = new StringBuilder();
-
-            for (byte b : hash) {
-                String hex = Integer.toHexString(0xff & b);
-                if(hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 	
 	public void actualizarCliente(Cliente cliente) throws Exception 
 	{

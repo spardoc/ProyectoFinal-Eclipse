@@ -1,8 +1,12 @@
 package ec.edu.ups.ppw63.ProyectoFinal.services;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import ec.edu.ups.ppw63.ProyectoFinal.business.GestionCarrito;
 import ec.edu.ups.ppw63.ProyectoFinal.business.GestionClientes;
+import ec.edu.ups.ppw63.ProyectoFinal.model.Carrito;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Cliente;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -22,6 +26,9 @@ public class ClienteServices
 {
 	@Inject
 	private GestionClientes gClientes;
+	
+	@Inject
+	private GestionCarrito gCarritos;
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -46,30 +53,26 @@ public class ClienteServices
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("login")
-	public Response verificarCliente(@QueryParam("correo") String correo, @QueryParam("clave") String clave) 
-	{
-		try {
-			boolean esValido = gClientes.verificarCorreo(correo);
-			if (esValido) 
-			{
-	            esValido = gClientes.verificarClave(clave);
-	            if (esValido) {
-	                // Envía un objeto JSON con el mensaje de acceso concedido
-	                return Response.ok("{\"mensaje\":\"Acceso concedido\"}").build();
-	            } else {
-	                // Credenciales inválidas
-	                ErrorMessage em = new ErrorMessage(4, "Correo o contraseña incorrecta");
-	                return Response.status(Response.Status.UNAUTHORIZED).entity(em).build();
-	            }
-			} else {
-	            // Credenciales inválidas
+	public Response verificarCliente(@QueryParam("correo") String correo, @QueryParam("clave") String clave) {
+	    try {
+	        Cliente cliente = gClientes.verificarCredenciales(correo, clave);
+	        if (cliente != null) {
+	            Carrito carrito = gCarritos.obtenerCarritoPorCliente(cliente.getCodigo());
+
+	            // Crear un mapa para la respuesta
+	            Map<String, Object> respuesta = new HashMap<>();
+	            respuesta.put("mensaje", "Acceso concedido");
+	            respuesta.put("codigoCarrito", carrito.getCodigo());
+
+	            return Response.ok(respuesta).build();
+	        } else {
 	            ErrorMessage em = new ErrorMessage(4, "Correo o contraseña incorrecta");
 	            return Response.status(Response.Status.UNAUTHORIZED).entity(em).build();
-            }
-		} catch (Exception e) {
-			ErrorMessage em = new ErrorMessage(4, "Correo o contraseña incorrecta");
-            return Response.status(Response.Status.UNAUTHORIZED).entity(em).build();
-		}
+	        }
+	    } catch (Exception e) {
+	        ErrorMessage em = new ErrorMessage(4, "Correo o contraseña incorrecta");
+	        return Response.status(Response.Status.UNAUTHORIZED).entity(em).build();
+	    }
 	}
 		 
 	

@@ -7,13 +7,14 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import ec.edu.ups.ppw63.ProyectoFinal.dao.CarritoDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.dao.ClienteDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.dao.DetalleFacturaDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.dao.FacturaDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.dao.ProductoDAO;
+import ec.edu.ups.ppw63.ProyectoFinal.model.Carrito;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Cliente;
-import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleFactura;
-import ec.edu.ups.ppw63.ProyectoFinal.model.Factura;
+import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleCarrito;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Producto;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -37,6 +38,9 @@ public class GestionDatos
 	@Inject
 	private DetalleFacturaDAO daoDetalleFactura;
 	
+	@Inject
+	private CarritoDAO daoCarrito;
+	
 	@Resource(lookup = "java:/ProyectoFinalDS")
     private DataSource dataSource;
 	
@@ -55,7 +59,6 @@ public class GestionDatos
 		System.out.println("Iniciando...");
 		
 		Cliente cliente = new Cliente();
-		cliente.setCodigo(1);
 		cliente.setDni("1105919169");
 		cliente.setNombre("Samuel Pardo");
 		cliente.setCorreo("samuelpardo1997@gmail.com");
@@ -65,7 +68,6 @@ public class GestionDatos
 		daoCliente.insert(cliente);
 		
 		cliente = new Cliente();
-		cliente.setCodigo(2);
 		cliente.setDni("1105919388");
 		cliente.setNombre("Cristian Timbi");
 		cliente.setCorreo("ctimbi@ups.edu.ec");
@@ -127,6 +129,8 @@ public class GestionDatos
 		prod.setStock(20);
 		
 		daoProducto.insert(prod);
+		
+		
 		
 		System.out.println("\n------------- Clientes");
 		List<Cliente> list = daoCliente.getAll();

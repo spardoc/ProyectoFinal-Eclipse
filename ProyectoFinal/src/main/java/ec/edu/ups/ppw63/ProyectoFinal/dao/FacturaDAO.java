@@ -3,7 +3,6 @@ package ec.edu.ups.ppw63.ProyectoFinal.dao;
 
 import java.util.List;
 
-import ec.edu.ups.ppw63.ProyectoFinal.model.Cliente;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Factura;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
