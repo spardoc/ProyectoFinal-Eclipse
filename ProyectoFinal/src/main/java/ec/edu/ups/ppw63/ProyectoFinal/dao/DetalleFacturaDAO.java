@@ -35,4 +35,6 @@ public class DetalleFacturaDAO {
         Query q = em.createQuery(jpql, DetalleFactura.class);
         return q.getResultList();
     }
+    
+    
 }

@@ -1,8 +1,14 @@
 package ec.edu.ups.ppw63.ProyectoFinal.business;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import ec.edu.ups.ppw63.ProyectoFinal.dao.FacturaDAO;
+import ec.edu.ups.ppw63.ProyectoFinal.model.Carrito;
+import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleCarrito;
+import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleFactura;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Factura;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
@@ -13,17 +19,11 @@ public class GestionFacturas
 	@Inject
 	private FacturaDAO daoFactura;
 	
-	public void guardarFactura(Factura factura) 
+	private static final Random random = new Random();
+	
+	public Factura guardarFacturaDesdeCarrito(Carrito carrito) 
 	{
-		Factura fac = daoFactura.read(factura.getCodigo());
-		if (fac != null) 
-		{
-			daoFactura.update(factura);
-		}
-		else 
-		{
-			daoFactura.insert(factura);
-		}
+		return daoFactura.crearYGuardarFacturaDesdeCarrito(carrito);
 	}
 	
 	public void actualizarFactura(Factura factura) throws Exception 
@@ -53,4 +53,5 @@ public class GestionFacturas
 	{
 		return daoFactura.getAll();
 	}
+	
 }

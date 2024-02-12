@@ -5,6 +5,7 @@ import java.util.List;
 import ec.edu.ups.ppw63.ProyectoFinal.dao.CarritoDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Carrito;
 import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleCarrito;
+import ec.edu.ups.ppw63.ProyectoFinal.model.Factura;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 
@@ -13,6 +14,9 @@ public class GestionCarrito {
 
     @Inject
     private CarritoDAO carritoDAO;
+    
+    @Inject
+    private GestionFacturas gestionFacturas;
 
     public Carrito agregarDetallesACarrito(int codigoCarrito, List<DetalleCarrito> detalles) {
         Carrito carrito = carritoDAO.read(codigoCarrito);
@@ -35,13 +39,7 @@ public class GestionCarrito {
     
     public Carrito obtenerCarritoPorCliente(int codigoCliente) {
         Carrito carrito = carritoDAO.obtenerCarritoPorCliente(codigoCliente);
-
-        // Si el carrito no existe, significa que algo inesperado ha ocurrido,
-        // ya que se supone que el carrito se crea automáticamente al crear el cliente.
         if (carrito == null) {
-            // Aquí puedes manejar esta situación, por ejemplo, lanzando una excepción,
-            // o crear un nuevo carrito y asociarlo al cliente (aunque esto último 
-            // debería ser innecesario si la lógica de creación de clientes funciona correctamente).
             throw new IllegalStateException("El carrito no fue creado automáticamente para el cliente con código: " + codigoCliente);
         }
 
@@ -50,5 +48,10 @@ public class GestionCarrito {
     
     public List<Carrito> getCarritos() {
        return carritoDAO.getAll();
+    }
+    
+    
+    public void actualizarCarrito(Carrito carrito) {
+        carritoDAO.update(carrito);
     }
 }

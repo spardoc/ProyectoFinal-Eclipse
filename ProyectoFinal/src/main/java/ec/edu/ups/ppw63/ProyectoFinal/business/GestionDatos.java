@@ -12,9 +12,7 @@ import ec.edu.ups.ppw63.ProyectoFinal.dao.ClienteDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.dao.DetalleFacturaDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.dao.FacturaDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.dao.ProductoDAO;
-import ec.edu.ups.ppw63.ProyectoFinal.model.Carrito;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Cliente;
-import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleCarrito;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Producto;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -30,16 +28,7 @@ public class GestionDatos
 	private ClienteDAO daoCliente;
 	
 	@Inject
-	private FacturaDAO daoFactura;
-	
-	@Inject
 	private ProductoDAO daoProducto;
-	
-	@Inject
-	private DetalleFacturaDAO daoDetalleFactura;
-	
-	@Inject
-	private CarritoDAO daoCarrito;
 	
 	@Resource(lookup = "java:/ProyectoFinalDS")
     private DataSource dataSource;
@@ -130,7 +119,32 @@ public class GestionDatos
 		
 		daoProducto.insert(prod);
 		
+		prod = new Producto();
+		prod.setNombre("Camiseta LUCATTI");
+		prod.setCategoria("Hombre");
+		prod.setPrecio(12.00);
+		prod.setImagen("https://lucattistore.com/wp-content/uploads/2021/08/Camiseta-con-estampado-de-bolsillo-Guayaquil-Parque-Las-Iguanas-mujer.jpg");
+		prod.setStock(10);
 		
+		daoProducto.insert(prod);
+		
+		prod = new Producto();
+		prod.setNombre("Camiseta básica estampado LONG BEACH");
+		prod.setCategoria("Hombre");
+		prod.setPrecio(10.50);
+		prod.setImagen("https://patprimoecuador.vteximg.com.br/arquivos/ids/218429-950-1140/44090593-9399_1.jpg?v=637528027199400000");
+		prod.setStock(32);
+		
+		daoProducto.insert(prod);
+		
+		prod = new Producto();
+		prod.setNombre("Camiseta estampado RUGRATS");
+		prod.setCategoria("Mujer");
+		prod.setPrecio(13.60);
+		prod.setImagen("https://falabella.scene7.com/is/image/FalabellaCO/11591800_1?wid=800&hei=800&qlt=70");
+		prod.setStock(15);
+		
+		daoProducto.insert(prod);
 		
 		System.out.println("\n------------- Clientes");
 		List<Cliente> list = daoCliente.getAll();

@@ -3,9 +3,11 @@ package ec.edu.ups.ppw63.ProyectoFinal.services;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import ec.edu.ups.ppw63.ProyectoFinal.business.GestionCarrito;
 import ec.edu.ups.ppw63.ProyectoFinal.business.GestionClientes;
+import ec.edu.ups.ppw63.ProyectoFinal.dto.ClienteDTO;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Carrito;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Cliente;
 import jakarta.inject.Inject;
@@ -151,14 +153,16 @@ public class ClienteServices
 		}
 	}
 	
-	@GET
+	@GET	
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("list")
 	public Response getClientes(){
 		List<Cliente> clientes = gClientes.getClientes();
-		if(clientes.size()>0)
-			return Response.ok(clientes).build();
-		
+		List<ClienteDTO> clientesDTO = clientes.stream()
+                .map(ClienteDTO::new) // Convierte cada Cliente a ClienteDTO
+                .collect(Collectors.toList());
+		if((!clientesDTO.isEmpty()))
+			return Response.ok(clientesDTO).build();
 		ErrorMessage error = new ErrorMessage(6, "No se registran clientes");
 		return Response.status(Response.Status.NOT_FOUND)
 				.entity(error)

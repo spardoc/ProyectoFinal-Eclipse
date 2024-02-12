@@ -1,6 +1,5 @@
 
 package ec.edu.ups.ppw63.ProyectoFinal.model;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class Factura
     @Column(name = "total")
     private Double total;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_cliente")
     private Cliente cliente;
 
@@ -70,6 +69,14 @@ public class Factura
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+	
+	public List<DetalleFactura> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(List<DetalleFactura> detalles) {
+		this.detalles = detalles;
 	}
 
 	@Override

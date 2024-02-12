@@ -10,6 +10,7 @@ public class ClienteDTO {
     private String correo;
     private String clave;
     private String direccion;
+    private Integer carritoCodigo;
 
     // Constructor por defecto necesario para la deserialización JSON
     public ClienteDTO() {
@@ -76,6 +77,15 @@ public class ClienteDTO {
         return cliente;
     }
 
+ // Getter y setter nuevo para carritoCodigo
+    public Integer getCarritoCodigo() {
+        return carritoCodigo;
+    }
+
+    public void setCarritoCodigo(Integer carritoCodigo) {
+        this.carritoCodigo = carritoCodigo;
+    }
+
     // Constructor que acepta un Cliente para convertir de la entidad al DTO
     public ClienteDTO(Cliente cliente) {
         this.codigo = cliente.getCodigo();
@@ -84,5 +94,6 @@ public class ClienteDTO {
         this.correo = cliente.getCorreo();
         this.clave = cliente.getClave();
         this.direccion = cliente.getDireccion();
+        this.carritoCodigo = cliente.getCarrito() != null ? cliente.getCarrito().getCodigo() : null; // Asigna el código del Carrito si existe
     }
 }

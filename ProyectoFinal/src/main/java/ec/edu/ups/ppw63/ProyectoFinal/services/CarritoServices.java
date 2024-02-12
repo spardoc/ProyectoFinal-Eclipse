@@ -96,7 +96,4 @@ public class CarritoServices {
         CarritoDTO carritoDTO = new CarritoDTO(carrito);
         return Response.ok(carritoDTO).build();
     }
-
-    
-    
 }

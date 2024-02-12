@@ -1,6 +1,9 @@
 
 package ec.edu.ups.ppw63.ProyectoFinal.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -30,12 +33,37 @@ public class Cliente {
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Carrito carrito;
     
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Factura> facturas = new ArrayList<>();
+    
     public Cliente() {
         this.carrito = new Carrito();
         this.carrito.setCliente(this);
     }
+    
+ // Método para agregar facturas al cliente
+    public void agregarFactura(Factura factura) {
+        factura.setCliente(this);
+        this.facturas.add(factura);
+    }
 
-    public String getDni() {
+    public Carrito getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
+	}
+
+	public String getDni() {
 		return dni;
 	}
 

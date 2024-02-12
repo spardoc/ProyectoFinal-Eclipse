@@ -5,8 +5,6 @@ import ec.edu.ups.ppw63.ProyectoFinal.dao.ClienteDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Cliente;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 
 @Stateless

@@ -16,11 +16,17 @@ public class DetalleFactura {
     @Column(name = "cantidad")
 	private int cantidad;
 	
-    @Column(name = "precio")
+    @Column(name = "precio_unitario")
 	private double precio;
 	
+    @Column(name = "subtotal")
+	private double subtotal;
+    
     @Column(name = "iva")
 	private int iva;
+    
+    @Column(name = "total")
+	private double total;
 	
 	@ManyToOne
     @JoinColumn(name = "factura_codigo")
@@ -76,6 +82,25 @@ public class DetalleFactura {
 
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
+	}
+
+	
+	
+	
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
 	}
 
 	@Override
