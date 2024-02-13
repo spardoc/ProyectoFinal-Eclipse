@@ -28,6 +28,9 @@ public class Producto
     @Column(name = "precio")
     private double precio;
     
+    @Column(name = "descripcion",length = 2000)
+    private String descripcion;
+    
     @Column(name = "imagen", length = 2000) // Aumenta la longitud de la columna 'imagen' según tus necesidades
     private String imagen;
 
@@ -79,9 +82,18 @@ public class Producto
 		this.imagen = imagen;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	@Override
 	public String toString() {
 		return "Producto [codigo=" + codigo + ", nombre=" + nombre + ", categoria=" + categoria + ", stock=" + stock
-				+ ", precio=" + precio + "]";
+				+ ", precio=" + precio + ", descripcion=" + descripcion + ", imagen=" + imagen + "]";
 	}
+	
 }

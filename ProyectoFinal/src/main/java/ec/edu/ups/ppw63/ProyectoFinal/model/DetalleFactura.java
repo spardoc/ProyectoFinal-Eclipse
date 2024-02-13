@@ -18,6 +18,9 @@ public class DetalleFactura {
 	
     @Column(name = "precio_unitario")
 	private double precio;
+    
+    @Column(name = "talla")
+	private String talla;
 	
     @Column(name = "subtotal")
 	private double subtotal;
@@ -83,10 +86,15 @@ public class DetalleFactura {
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
 	}
+	
+	public String getTalla() {
+		return talla;
+	}
 
-	
-	
-	
+	public void setTalla(String talla) {
+		this.talla = talla;
+	}
+
 	public double getSubtotal() {
 		return subtotal;
 	}

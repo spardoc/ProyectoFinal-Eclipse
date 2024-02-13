@@ -6,6 +6,7 @@ import ec.edu.ups.ppw63.ProyectoFinal.model.Producto;
 public class DetalleCarritoDTO {
     private int cantidad;
     private ProductoDTO producto;
+    private String talla;
 
     // Constructor por defecto necesario para la deserialización JSON
     public DetalleCarritoDTO() {
@@ -28,7 +29,15 @@ public class DetalleCarritoDTO {
         this.producto = producto;
     }
 
-    // Método para convertir DTO a entidad
+    public String getTalla() {
+		return talla;
+	}
+
+	public void setTalla(String talla) {
+		this.talla = talla;
+	}
+
+	// Método para convertir DTO a entidad
     public DetalleCarrito toEntity() {
         DetalleCarrito detalle = new DetalleCarrito();
         detalle.setCantidad(this.cantidad);
@@ -36,7 +45,7 @@ public class DetalleCarritoDTO {
             Producto productoEntity = this.producto.toEntity();
             detalle.setProducto(productoEntity);
         }
-        // Asumiendo que DetalleCarrito tiene otros campos, establecerlos aquí
+        detalle.setTalla(this.talla);
         return detalle;
     }
 
@@ -44,6 +53,8 @@ public class DetalleCarritoDTO {
     public DetalleCarritoDTO(DetalleCarrito detalle) {
         this.cantidad = detalle.getCantidad();
         this.producto = new ProductoDTO(detalle.getProducto());
-        // Asumiendo que DetalleCarrito tiene otros campos, inicializarlos aquí
+        this.talla = detalle.getTalla();
     }
+    
+    
 }

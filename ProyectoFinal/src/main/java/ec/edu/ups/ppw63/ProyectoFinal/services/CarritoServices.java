@@ -6,9 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import ec.edu.ups.ppw63.ProyectoFinal.business.GestionCarrito;
-import ec.edu.ups.ppw63.ProyectoFinal.business.GestionClientes;
 import ec.edu.ups.ppw63.ProyectoFinal.business.GestionDetallesCarrito;
-import ec.edu.ups.ppw63.ProyectoFinal.dao.ClienteDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.dto.CarritoDTO;
 import ec.edu.ups.ppw63.ProyectoFinal.dto.DetalleCarritoDTO;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Carrito;
@@ -27,12 +25,6 @@ public class CarritoServices {
     
     @Inject
     private GestionDetallesCarrito gestionDetallesCarrito;
-    
-    @Inject
-    private GestionClientes gestionClientes;
-    
-    @Inject
-    private ClienteDAO clienteDAO;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -74,7 +66,7 @@ public class CarritoServices {
         DetalleCarrito detalle = detalleDTO.toEntity();
         detalle.setCarrito(carrito);
         detalle.setProducto(producto);
-
+        
         gestionDetallesCarrito.agregarDetalle(detalle);
 
         Map<String, String> respuesta = new HashMap<>();

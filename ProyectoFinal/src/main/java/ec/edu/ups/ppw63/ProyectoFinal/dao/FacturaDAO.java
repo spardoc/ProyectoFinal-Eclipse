@@ -78,6 +78,7 @@ public class FacturaDAO
             detalleFactura.setIva(porcentajeIVA);
             detalleFactura.setProductos(Arrays.asList(detalleCarrito.getProducto()));
             detalleFactura.setFactura(factura);
+            detalleFactura.setTalla(detalleCarrito.getTalla());
 
             double subtotal = detalleFactura.getCantidad() * detalleFactura.getPrecio();
             double totalDetalle = subtotal + (subtotal * porcentajeIVA / 100.0); // Asegúrate de dividir entre 100.0 para obtener el porcentaje

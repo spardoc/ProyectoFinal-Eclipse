@@ -7,8 +7,6 @@ import java.util.Random;
 
 import ec.edu.ups.ppw63.ProyectoFinal.dao.FacturaDAO;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Carrito;
-import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleCarrito;
-import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleFactura;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Factura;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
@@ -18,8 +16,6 @@ public class GestionFacturas
 {
 	@Inject
 	private FacturaDAO daoFactura;
-	
-	private static final Random random = new Random();
 	
 	public Factura guardarFacturaDesdeCarrito(Carrito carrito) 
 	{

@@ -6,6 +6,7 @@ public class DetalleFacturaDTO {
     private int cantidad;
     private double precio;
     private int iva;
+    private String talla;
 
     public DetalleFacturaDTO() {
     }
@@ -14,6 +15,7 @@ public class DetalleFacturaDTO {
         this.cantidad = detalle.getCantidad();
         this.precio = detalle.getPrecio();
         this.iva = detalle.getIva();
+        this.talla = detalle.getTalla();
     }
 
 	public int getCantidad() {
@@ -38,5 +40,13 @@ public class DetalleFacturaDTO {
 
 	public void setIva(int iva) {
 		this.iva = iva;
+	}
+
+	public String getTalla() {
+		return talla;
+	}
+
+	public void setTalla(String talla) {
+		this.talla = talla;
 	}
 }

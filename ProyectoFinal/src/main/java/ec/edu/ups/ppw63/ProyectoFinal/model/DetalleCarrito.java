@@ -21,6 +21,9 @@ public class DetalleCarrito {
     @JoinColumn(name = "carrito_codigo")
     private Carrito carrito;
     
+    @Column(name = "talla")
+    private String talla;
+    
 	public int getCodigo() {
 		return codigo;
 	}
@@ -52,6 +55,14 @@ public class DetalleCarrito {
     public void setCarrito(Carrito carrito) {
         this.carrito = carrito;
     }
+    
+	public String getTalla() {
+		return talla;
+	}
+
+	public void setTalla(String talla) {
+		this.talla = talla;
+	}
 
 	@Override
 	public String toString() {

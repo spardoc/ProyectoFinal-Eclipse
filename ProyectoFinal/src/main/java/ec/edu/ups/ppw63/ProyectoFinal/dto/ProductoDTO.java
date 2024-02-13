@@ -9,6 +9,7 @@ public class ProductoDTO {
     private int stock;
     private double precio;
     private String imagen;
+    private String descripcion;
 
     // Constructor por defecto, getters y setters
 
@@ -20,6 +21,7 @@ public class ProductoDTO {
         producto.setStock(this.stock);
         producto.setPrecio(this.precio);
         producto.setImagen(this.imagen);
+        producto.setDescripcion(this.descripcion);
         return producto;
     }
 
@@ -36,6 +38,7 @@ public class ProductoDTO {
         this.stock = producto.getStock();
         this.precio = producto.getPrecio();
         this.imagen = producto.getImagen();
+        this.descripcion = producto.getDescripcion();
     }
 
 	public int getCodigo() {
@@ -86,4 +89,11 @@ public class ProductoDTO {
 		this.imagen = imagen;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 }

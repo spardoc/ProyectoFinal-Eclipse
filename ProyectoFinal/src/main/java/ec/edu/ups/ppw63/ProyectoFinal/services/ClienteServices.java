@@ -32,24 +32,22 @@ public class ClienteServices
 	@Inject
 	private GestionCarrito gCarritos;
 	
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response crear(Cliente cliente) 
-	{
-		try 
-		{
-			gClientes.guardarClientes(cliente);
-			return Response.ok(cliente).build();
+		@POST
+		@Produces(MediaType.APPLICATION_JSON)
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response crear(Cliente cliente) {
+		    try {
+		        gClientes.guardarClientes(cliente);
+		        ClienteDTO clienteDTO = new ClienteDTO(cliente); // Convierte a DTO
+		        return Response.ok(clienteDTO).build(); // Devuelve el DTO
+		    } catch (Exception e) {
+		        ErrorMessage error = new ErrorMessage(99, e.getMessage());
+		        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+		                .entity(error)
+		                .build();
+		    }
 		}
-		catch (Exception e) 
-		{
-			ErrorMessage error = new ErrorMessage(99, e.getMessage());
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity(error)
-					.build();
-		}
-	}
+
 	
 
 	@GET
