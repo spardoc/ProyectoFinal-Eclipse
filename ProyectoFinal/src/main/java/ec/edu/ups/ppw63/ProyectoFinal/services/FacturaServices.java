@@ -73,7 +73,7 @@ public class FacturaServices {
             FacturaDTO facturaDTO = new FacturaDTO(factura);
 
             // Generar el PDF
-            String dest = "C:\\Users\\ADMIN\\OneDrive\\Desktop\\factura_" + factura.getNumero() + ".pdf"; 
+            String dest = "" + factura.getNumero() + ".pdf"; 
             generarPDF(dest, factura);
 
             // Enviar el PDF por correo
@@ -131,8 +131,8 @@ public class FacturaServices {
     }
 	
     public void enviarCorreoConPDF(String destino, String rutaPDF) {
-        final String username = "samuelpardo1997@gmail.com"; // Reemplaza esto con tu correo de Gmail
-        final String password = "arrf ybqu iawm resg"; // Reemplaza esto con tu contraseña o contraseña de aplicación de Gmail
+        final String username = ""; // Reemplaza esto con tu correo de Gmail
+        final String password = ""; // Reemplaza esto con tu contraseña o contraseña de aplicación de Gmail
 
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
@@ -148,7 +148,7 @@ public class FacturaServices {
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("samuelpardo1997@gmail.com")); // Reemplaza esto con tu correo de Gmail
+            message.setFrom(new InternetAddress("")); // Reemplaza esto con tu correo de Gmail
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destino));
             message.setSubject("Factura TIENDA GALLITO");
 
