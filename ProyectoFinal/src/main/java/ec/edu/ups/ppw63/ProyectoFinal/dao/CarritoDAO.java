@@ -67,7 +67,14 @@ public class CarritoDAO {
 
     public void removerDetalleCarrito(int codigoDetalle) {
         DetalleCarrito detalle = em.find(DetalleCarrito.class, codigoDetalle);
-        em.remove(detalle);
+        if (detalle != null) {
+            Carrito carrito = detalle.getCarrito();
+            if (carrito != null) {
+                carrito.getDetalles().remove(detalle); // Desvincular el detalle del carrito
+                em.merge(carrito); // Guardar el cambio en el carrito
+            }
+            em.remove(detalle); // Ahora eliminar el detalle
+        }
     }
     
     public Carrito obtenerCarritoPorCliente(int codigoCliente) {

@@ -4,6 +4,7 @@ import ec.edu.ups.ppw63.ProyectoFinal.model.DetalleCarrito;
 import ec.edu.ups.ppw63.ProyectoFinal.model.Producto;
 
 public class DetalleCarritoDTO {
+	private int codigo;
     private int cantidad;
     private ProductoDTO producto;
     private String talla;
@@ -17,7 +18,15 @@ public class DetalleCarritoDTO {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -46,15 +55,15 @@ public class DetalleCarritoDTO {
             detalle.setProducto(productoEntity);
         }
         detalle.setTalla(this.talla);
+        detalle.setCodigo(this.codigo);
         return detalle;
     }
 
     // Constructor que acepta un DetalleCarrito para convertir de la entidad al DTO
     public DetalleCarritoDTO(DetalleCarrito detalle) {
+    	this.codigo = detalle.getCodigo();
         this.cantidad = detalle.getCantidad();
         this.producto = new ProductoDTO(detalle.getProducto());
         this.talla = detalle.getTalla();
     }
-    
-    
 }

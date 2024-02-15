@@ -31,6 +31,7 @@ public class GestionDetallesCarrito {
 
     public void eliminarDetalle(int codigo) {
         detalleCarritoDAO.remove(codigo);
+        System.out.println("DETALLE ELIMINADO");
     }
 
     public List<DetalleCarrito> obtenerDetallesPorCarrito(int codigoCarrito) {

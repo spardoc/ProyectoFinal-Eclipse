@@ -68,11 +68,10 @@ public class CarritoServices {
         detalle.setProducto(producto);
         
         gestionDetallesCarrito.agregarDetalle(detalle);
-
-        Map<String, String> respuesta = new HashMap<>();
-        respuesta.put("mensaje", "Producto agregado al carrito");
-        
-        return Response.status(Response.Status.OK).entity(respuesta).build();
+        Map<String, Object> respuesta = new HashMap<>();
+		respuesta.put("mensaje", "Producto agregado al carrito");
+		respuesta.put("codigoDetalle", detalle.getCodigo()); // Devuelve el código del detalle
+		return Response.status(Response.Status.OK).entity(respuesta).build();
     }
 
     @GET
@@ -88,4 +87,26 @@ public class CarritoServices {
         CarritoDTO carritoDTO = new CarritoDTO(carrito);
         return Response.ok(carritoDTO).build();
     }
+    
+    @DELETE
+    @Path("/borrar/{codigoDetalleCarrito}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response borrar(@PathParam("codigoDetalleCarrito") int codigoDetalleCarrito) 
+	{
+		try 
+		{
+			gestionCarrito.eliminarDetalleCarrito(codigoDetalleCarrito);
+			Map<String, String> respuesta = new HashMap<>();
+	        respuesta.put("mensaje", "Detalle carrito eliminado correctamente");
+	        
+	        return Response.status(Response.Status.OK).entity(respuesta).build();
+		}
+		catch (Exception e) 
+		{
+			ErrorMessage error = new ErrorMessage(6, "No se pudo eliminar el detalle o no existe");
+            return Response.status(Response.Status.NOT_FOUND)
+                           .entity(error)
+                           .build();
+		}
+	}
 }
